@@ -66,26 +66,29 @@
                                         dest="${project.source.directory}/p7zip.tar.bz2"
                                         skipexisting="true"/>
                                 </parallel>
+                                <exec executable="gpg" failonerror="true">
+                                    <arg line="--receive-keys EB774491D9FF06E2"></arg>
+                                </exec>
                                 <parallel>
                                     <echo message="checking windows binary signature"/>
                                     <exec executable="gpg" failonerror="true">
                                         <arg
-                                            line="--auto-key-retrieve --verify ${project.source.directory}/torbrowser-install-${torbrowser.version}_en-US.exe.asc ${project.source.directory}/torbrowser-install-${torbrowser.version}_en-US.exe"></arg>
+                                            line="--verify ${project.source.directory}/torbrowser-install-${torbrowser.version}_en-US.exe.asc ${project.source.directory}/torbrowser-install-${torbrowser.version}_en-US.exe"></arg>
                                     </exec>
                                     <echo message="checking macos binary signature"/>
                                     <exec executable="gpg" failonerror="true">
                                         <arg
-                                            line="--auto-key-retrieve --verify ${project.source.directory}/TorBrowser-${torbrowser.version}-osx64_en-US.dmg.asc ${project.source.directory}/TorBrowser-${torbrowser.version}-osx64_en-US.dmg"></arg>
+                                            line="--verify ${project.source.directory}/TorBrowser-${torbrowser.version}-osx64_en-US.dmg.asc ${project.source.directory}/TorBrowser-${torbrowser.version}-osx64_en-US.dmg"></arg>
                                     </exec>
                                     <echo message="checking linux32 binary signature"/>
                                     <exec executable="gpg" failonerror="true">
                                         <arg
-                                            line="--auto-key-retrieve --verify ${project.source.directory}/tor-browser-linux32-${torbrowser.version}_en-US.tar.xz.asc ${project.source.directory}/tor-browser-linux32-${torbrowser.version}_en-US.tar.xz"></arg>
+                                            line="--verify ${project.source.directory}/tor-browser-linux32-${torbrowser.version}_en-US.tar.xz.asc ${project.source.directory}/tor-browser-linux32-${torbrowser.version}_en-US.tar.xz"></arg>
                                     </exec>
                                     <echo message="checking linux64 binary signature"/>
                                     <exec executable="gpg" failonerror="true">
                                         <arg
-                                            line="--auto-key-retrieve --verify ${project.source.directory}/tor-browser-linux64-${torbrowser.version}_en-US.tar.xz.asc ${project.source.directory}/tor-browser-linux64-${torbrowser.version}_en-US.tar.xz"></arg>
+                                            line="--verify ${project.source.directory}/tor-browser-linux64-${torbrowser.version}_en-US.tar.xz.asc ${project.source.directory}/tor-browser-linux64-${torbrowser.version}_en-US.tar.xz"></arg>
                                     </exec>
                                 </parallel>
                                 <bunzip2 src="${project.source.directory}/p7zip.tar.bz2"
