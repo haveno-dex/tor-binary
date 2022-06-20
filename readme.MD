@@ -1,11 +1,31 @@
 # Tor Binary files
 
-Package native Tor files from [Tor Browser project](https://www.torproject.org/) in a way that can be uses by java projects.
+Package native Tor files from [Tor Browser project](https://www.torproject.org/) in a way that can be uses by java projects. Use the SHA256 hashes for checksum verification.
+
+# Process
+
+1. Fetch parallel tor browser files
+2. Verify checksum
+3. Downloads p7zip for linux if not exists
+4. Extract geoip files from linux tor browser file
+
+# Update to new version
+
+1. Replace `torbrowser.version` with target version in the maven file
+2. Find out which `tor binary version` is used in the tor browser. Should be announced in the release notes and can be found at the download page as binaries for windows (https://dist.torproject.org/torbrowser/[torbrowser.version]/tor-win64-[tor-binary-version].zip).
+3. Set the tor-binary version in the maven file
+4. Get the hash values of the new version from https://dist.torproject.org/torbrowser/[torbrowser.version]/sha256sums-signed-build.txt and update the files inside tor-binary-resources/checksums
+5.
+
+Tor browser versions can be found here: https://dist.torproject.org/torbrowser/[torbrowser.version]
+
+# Pre-requisites
+
+- GPG
+- p7zip
+
 
 # Install
-
-require GPG installed
-
 Change in pom to get the desired version
 
 ```<torbrowser.version>your TorBrowserBundle version here</torbrowser.version>```
@@ -40,7 +60,7 @@ Tor binary are simple zip files:
 
 ```
 <dependency>
-    <groupId>com.github.JesusMcCloud.tor-binary</groupId>
+    <groupId>com.github.bisq-network.tor-binary</groupId>
     <artifactId>tor-binary-linux32</artifactId>
     <version>${torbrowser.version}</version>
     <type>tar.xz</type>
@@ -49,7 +69,7 @@ Tor binary are simple zip files:
 ```
 ```
 <dependency>
-    <groupId>com.github.JesusMcCloud.tor-binary</groupId>
+    <groupId>com.github.bisq-network.tor-binary</groupId>
     <artifactId>tor-binary-linux64</artifactId>
     <version>${torbrowser.version}</version>
     <type>tar.xz</type>
@@ -58,7 +78,7 @@ Tor binary are simple zip files:
 ```
 ```
 <dependency>
-    <groupId>com.github.JesusMcCloud.tor-binary</groupId>
+    <groupId>com.github.bisq-network.tor-binary</groupId>
     <artifactId>tor-binary-macos</artifactId>
     <version>${torbrowser.version}</version>
     <type>tar.xz</type>
@@ -67,7 +87,7 @@ Tor binary are simple zip files:
 ```
 ```
 <dependency>
-    <groupId>com.github.JesusMcCloud.tor-binary</groupId>
+    <groupId>com.github.bisq-network.tor-binary</groupId>
     <artifactId>tor-binary-windows</artifactId>
     <version>${torbrowser.version}</version>
     <type>tar.xz</type>

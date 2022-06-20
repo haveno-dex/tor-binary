@@ -24,3 +24,9 @@ local.properties
 ### Maven
 target/
 *.iml
+/tor-binary-resources/src
+/tor-binary-geoip/src
+/tor-binary-linux32/src
+/tor-binary-linux64/src
+/tor-binary-macos/src
+/tor-binary-windows/src
