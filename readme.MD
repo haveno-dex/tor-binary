@@ -11,11 +11,17 @@ Package native Tor files from [Tor Browser project](https://www.torproject.org/)
 
 # Update to new version
 
-1. Replace `torbrowser.version` with target version in the maven file
-2. Find out which `tor binary version` is used in the tor browser. Should be announced in the release notes and can be found at the download page as binaries for windows (https://dist.torproject.org/torbrowser/[torbrowser.version]/tor-win64-[tor-binary-version].zip).
-3. Set the tor-binary version in the maven file
-4. Get the hash values of the new version from https://dist.torproject.org/torbrowser/[torbrowser.version]/sha256sums-signed-build.txt and update the files inside tor-binary-resources/checksums
-5.
+1. Replace `torbrowser.version` with target version in the [build file](build.xml) and the [Maven file](pom.xml)
+2. Find out which `tor binary version` is used in the tor browser. Should be announced in the release notes and can be found at the download page as binaries for Windows (https://dist.torproject.org/torbrowser/[torbrowser.version]/tor-win64-[tor-binary-version].zip).
+3. Set the `tor-binary version` in following Maven files:
+   - [pom.xml](pom.xml)
+   - [tor-binary-geoip/pom.xml](tor-binary-geoip/pom.xml)
+   - [tor-binary-linux32/pom.xml](tor-binary-linux32/pom.xml)
+   - [tor-binary-linux64/pom.xml](tor-binary-linux64/pom.xml)
+   - [tor-binary-macos/pom.xml](tor-binary-macos/pom.xml)
+   - [tor-binary-resources/pom.xml](tor-binary-resources/pom.xml)
+   - [tor-binary-windows/pom.xml](tor-binary-windows/pom.xml)
+4. Get the hash values of the new version from https://dist.torproject.org/torbrowser/[torbrowser.version]/sha256sums-signed-build.txt and update the files inside [tor-binary-resources/checksums](tor-binary-resources/checksums)
 
 Tor browser versions can be found here: https://dist.torproject.org/torbrowser/[torbrowser.version]
 
@@ -30,7 +36,7 @@ Change in pom to get the desired version
 
 ```<torbrowser.version>your TorBrowserBundle version here</torbrowser.version>```
 
-run ```maven install```
+run ```mvn install```
 
 alternatively, you can source jitpack.io:
 
