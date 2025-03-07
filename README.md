@@ -1,6 +1,6 @@
 # Tor Binary files
 
-Package native Tor files from [Tor Browser project](https://www.torproject.org/) in a way that can be uses by java projects. Use the SHA256 hashes for checksum verification.
+Package native Tor files from [Tor Browser project](https://www.torproject.org/) in a way that can be used by java projects. Use the SHA256 hashes for checksum verification.
 
 # Process
 

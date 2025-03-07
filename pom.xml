@@ -5,7 +5,7 @@
 
     <groupId>com.github.haveno-dex.tor-binary</groupId>
     <artifactId>tor-binary</artifactId>
-    <version>0.4.8.13</version>
+    <version>0.4.8.14</version>
 
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
@@ -17,7 +17,7 @@
         - gpg in path
         - osx: 7z in path (can be installed with "brew install p7zip")
         -->
-        <torbrowser.version>14.0.3</torbrowser.version>
+        <torbrowser.version>14.0.7</torbrowser.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.remote-resource.directory>${project.build.directory}/maven-shared-archive-resources</project.remote-resource.directory>

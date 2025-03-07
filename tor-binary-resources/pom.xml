@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.haveno-dex.tor-binary</groupId>
         <artifactId>tor-binary</artifactId>
-        <version>0.4.8.13</version>
+        <version>0.4.8.14</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
