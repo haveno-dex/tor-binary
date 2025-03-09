@@ -4,14 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>com.github.bisq-network.tor-binary</groupId>
+        <groupId>com.github.haveno-dex.tor-binary</groupId>
         <artifactId>tor-binary</artifactId>
-        <version>0.4.8.13</version>
+        <version>0.4.8.14</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>tor-binary-linux64</artifactId>
     <packaging>jar</packaging>
+
     <build>
         <plugins>
             <plugin>
@@ -20,7 +21,7 @@
                 <version>1.6.0</version>
                 <configuration>
                     <resourceBundles>
-                        <resourceBundle>com.github.bisq-network.tor-binary:tor-binary-resources:${project.version}</resourceBundle>
+                        <resourceBundle>com.github.haveno-dex.tor-binary:tor-binary-resources:${project.version}</resourceBundle>
                     </resourceBundles>
                 </configuration>
                 <executions>
@@ -48,8 +49,8 @@
                                     <arg value="tor-browser/Browser/TorBrowser/Tor/"/>
                                 </exec>
 
-                                <delete dir="${project.remote-resource.directory}" />
                                 <delete dir="${project.basedir}/src/" failonerror="false" />
+                                <delete dir="${project.remote-resource.directory}" />
                                 <mkdir dir="${project.basedir}/src/main/resources/native/linux/x64/"/>
                                 <exec executable="tar" dir="${project.build.directory}/tor-browser/Browser/TorBrowser/Tor/" failonerror="true">
                                     <arg line="-cJvf ${project.basedir}/src/main/resources/native/linux/x64/tor.tar.xz ."/>

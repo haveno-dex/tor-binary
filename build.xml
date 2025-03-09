@@ -2,7 +2,7 @@
 <project name="tor-binaries" default="checkSignatures">
 
     <property name="project.source.directory" value="tmp"/>
-    <property name="torbrowser.version" value="14.0.3"/>
+    <property name="torbrowser.version" value="14.0.7"/>
     <target name="checkSignatures">
 
         <mkdir dir="${project.source.directory}"/>
@@ -43,19 +43,19 @@
         <parallel>
             <exec executable="gpg" failonerror="true">
                 <arg
-                    line="--auto-key-locate keyserver --keyserver pool.sks-keyservers.net --keyserver-options auto-key-retrieve --verify ${project.source.directory}/torbrowser-install-${torbrowser.version}_en-US.exe.asc ${project.source.directory}/torbrowser-install-${torbrowser.version}_en-US.exe"></arg>
+                    line="--auto-key-locate keyserver --keyserver keys.openpgp.org --keyserver-options auto-key-retrieve --verify ${project.source.directory}/torbrowser-install-${torbrowser.version}_en-US.exe.asc ${project.source.directory}/torbrowser-install-${torbrowser.version}_en-US.exe"></arg>
             </exec>
             <exec executable="gpg" failonerror="true">
                 <arg
-                    line="--auto-key-locate keyserver --keyserver pool.sks-keyservers.net --keyserver-options auto-key-retrieve --verify ${project.source.directory}/TorBrowser-${torbrowser.version}-osx64_en-US.dmg.asc ${project.source.directory}/TorBrowser-${torbrowser.version}-osx64_en-US.dmg"></arg>
+                    line="--auto-key-locate keyserver --keyserver keys.openpgp.org --keyserver-options auto-key-retrieve --verify ${project.source.directory}/TorBrowser-${torbrowser.version}-osx64_en-US.dmg.asc ${project.source.directory}/TorBrowser-${torbrowser.version}-osx64_en-US.dmg"></arg>
             </exec>
             <exec executable="gpg" failonerror="true">
                 <arg
-                    line="--auto-key-locate keyserver --keyserver pool.sks-keyservers.net --keyserver-options auto-key-retrieve --verify ${project.source.directory}/tor-browser-linux32-${torbrowser.version}_en-US.tar.xz.asc ${project.source.directory}/tor-browser-linux32-${torbrowser.version}_en-US.tar.xz"></arg>
+                    line="--auto-key-locate keyserver --keyserver keys.openpgp.org --keyserver-options auto-key-retrieve --verify ${project.source.directory}/tor-browser-linux32-${torbrowser.version}_en-US.tar.xz.asc ${project.source.directory}/tor-browser-linux32-${torbrowser.version}_en-US.tar.xz"></arg>
             </exec>
             <exec executable="gpg" failonerror="true">
                 <arg
-                    line="--auto-key-locate keyserver --keyserver pool.sks-keyservers.net --keyserver-options auto-key-retrieve --verify ${project.source.directory}/tor-browser-linux64-${torbrowser.version}_en-US.tar.xz.asc ${project.source.directory}/tor-browser-linux64-${torbrowser.version}_en-US.tar.xz"></arg>
+                    line="--auto-key-locate keyserver --keyserver keys.openpgp.org --keyserver-options auto-key-retrieve --verify ${project.source.directory}/tor-browser-linux64-${torbrowser.version}_en-US.tar.xz.asc ${project.source.directory}/tor-browser-linux64-${torbrowser.version}_en-US.tar.xz"></arg>
             </exec>
         </parallel>
 

@@ -1,6 +1,6 @@
 # Tor Binary files
 
-Package native Tor files from [Tor Browser project](https://www.torproject.org/) in a way that can be uses by java projects. Use the SHA256 hashes for checksum verification.
+Package native Tor files from [Tor Browser project](https://www.torproject.org/) in a way that can be used by java projects. Use the SHA256 hashes for checksum verification.
 
 # Process
 
@@ -32,6 +32,7 @@ Tor browser versions can be found here: https://dist.torproject.org/torbrowser/[
 
 
 # Install
+
 Change in pom to get the desired version
 
 ```<torbrowser.version>your TorBrowserBundle version here</torbrowser.version>```
@@ -59,14 +60,13 @@ Gradle:
     }
 ```
 
-
 # Usage
 
 Tor binary are simple zip files:
 
 ```
 <dependency>
-    <groupId>com.github.bisq-network.tor-binary</groupId>
+    <groupId>com.github.haveno-dex.tor-binary</groupId>
     <artifactId>tor-binary-linux32</artifactId>
     <version>${torbrowser.version}</version>
     <type>tar.xz</type>
@@ -75,7 +75,7 @@ Tor binary are simple zip files:
 ```
 ```
 <dependency>
-    <groupId>com.github.bisq-network.tor-binary</groupId>
+    <groupId>com.github.haveno-dex.tor-binary</groupId>
     <artifactId>tor-binary-linux64</artifactId>
     <version>${torbrowser.version}</version>
     <type>tar.xz</type>
@@ -84,7 +84,7 @@ Tor binary are simple zip files:
 ```
 ```
 <dependency>
-    <groupId>com.github.bisq-network.tor-binary</groupId>
+    <groupId>com.github.haveno-dex.tor-binary</groupId>
     <artifactId>tor-binary-macos</artifactId>
     <version>${torbrowser.version}</version>
     <type>tar.xz</type>
@@ -93,7 +93,7 @@ Tor binary are simple zip files:
 ```
 ```
 <dependency>
-    <groupId>com.github.bisq-network.tor-binary</groupId>
+    <groupId>com.github.haveno-dex.tor-binary</groupId>
     <artifactId>tor-binary-windows</artifactId>
     <version>${torbrowser.version}</version>
     <type>tar.xz</type>
