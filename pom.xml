@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <groupId>com.github.haveno-dex.tor-binary</groupId>
+    <groupId>com.github.NorrinRadd.tor-binary</groupId>
     <artifactId>tor-binary</artifactId>
     <version>0.4.8.14</version>
 
@@ -53,9 +53,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/haveno-dex/tor-binary</connection>
-        <developerConnection>scm:git:https://github.com/haveno-dex/tor-binary</developerConnection>
-        <url>scm:git:https://github.com/haveno-dex/tor-binary</url>
+        <connection>scm:git:https://github.com/NorrinRadd/tor-binary</connection>
+        <developerConnection>scm:git:https://github.com/NorrinRadd/tor-binary</developerConnection>
+        <url>scm:git:https://github.com/NorrinRadd/tor-binary</url>
     </scm>
 
     <modules>
