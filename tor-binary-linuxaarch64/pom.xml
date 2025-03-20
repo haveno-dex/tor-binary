@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.github.haveno-dex.tor-binary</groupId>
+        <artifactId>tor-binary</artifactId>
+        <version>0.4.8.14</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>tor-binary-linuxaarch64</artifactId>
+    <packaging>jar</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-remote-resources-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <resourceBundles>
+                        <resourceBundle>com.github.haveno-dex.tor-binary:tor-binary-resources:${project.version}</resourceBundle>
+                    </resourceBundles>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>get-and-verify</id>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <target>
+                                <delete dir="${project.build.directory}/tor-browser-linux-aarch64-${torbrowser.version}/" failonerror="false" />
+
+                                <exec executable="tar" dir="${project.build.directory}" failonerror="true">
+                                    <arg value="-xJvf"/>
+                                    <arg value="${project.remote-resource.directory}/tor-browser-linux-aarch64-${torbrowser.version}.tar.xz"/>
+                                    <arg value="tor-browser/Browser/TorBrowser/Tor/"/>
+                                </exec>
+
+                                <delete dir="${project.basedir}/src/" failonerror="false" />
+                                <delete dir="${project.remote-resource.directory}" />
+                                <mkdir dir="${project.basedir}/src/main/resources/native/linux/aarch64/"/>
+                                <exec executable="tar" dir="${project.build.directory}/tor-browser/Browser/TorBrowser/Tor/" failonerror="true">
+                                    <arg line="-cJvf ${project.basedir}/src/main/resources/native/linux/aarch64/tor.tar.xz ."/>
+                                </exec>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
