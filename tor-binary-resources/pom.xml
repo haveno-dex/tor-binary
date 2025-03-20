@@ -46,7 +46,7 @@
                                         dest="${project.source.directory}/tor-browser-linux-x86_64-${torbrowser.version}.tar.xz"
                                         skipexisting="true"/>
                                     <get
-                                        src="https://norrinradd.github.io/temp-storage/tor-browser-linux-aarch64-14.0.7.tar.gz"
+                                        src="https://norrinradd.github.io/temp-storage/tor-browser-linux-aarch64-14.0.7.tar.xz"
                                         dest="${project.source.directory}/tor-browser-linux-aarch64-${torbrowser.version}.tar.xz"
                                         skipexisting="true"/>
                                 </parallel>
