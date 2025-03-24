@@ -41,7 +41,7 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
-                                <delete dir="${project.build.directory}/tor-browser-linux-i686-${torbrowser.version}/" failonerror="false" />
+                                <delete dir="${project.build.directory}/tor-browser-linux-x86_64-${torbrowser.version}/" failonerror="false" />
 
                                 <exec executable="tar" dir="${project.build.directory}" failonerror="true">
                                     <arg value="-xJvf"/>

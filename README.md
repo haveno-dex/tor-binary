@@ -18,12 +18,15 @@ Package native Tor files from [Tor Browser project](https://www.torproject.org/)
    - [tor-binary-geoip/pom.xml](tor-binary-geoip/pom.xml)
    - [tor-binary-linux32/pom.xml](tor-binary-linux32/pom.xml)
    - [tor-binary-linux64/pom.xml](tor-binary-linux64/pom.xml)
+   - [tor-binary-linuxaarch64/pom.xml](tor-binary-linuxaarch64/pom.xml)
    - [tor-binary-macos/pom.xml](tor-binary-macos/pom.xml)
    - [tor-binary-resources/pom.xml](tor-binary-resources/pom.xml)
    - [tor-binary-windows/pom.xml](tor-binary-windows/pom.xml)
 4. Get the hash values of the new version from https://dist.torproject.org/torbrowser/[torbrowser.version]/sha256sums-signed-build.txt and update the files inside [tor-binary-resources/checksums](tor-binary-resources/checksums)
 
 Tor browser versions can be found here: https://dist.torproject.org/torbrowser/[torbrowser.version]
+
+Linux aarch64 binaries are currently being pulled from https://nightlies.tbb.torproject.org/nightly-builds/tor-browser-builds/
 
 # Pre-requisites
 
@@ -77,6 +80,15 @@ Tor binary are simple zip files:
 <dependency>
     <groupId>com.github.haveno-dex.tor-binary</groupId>
     <artifactId>tor-binary-linux64</artifactId>
+    <version>${torbrowser.version}</version>
+    <type>tar.xz</type>
+    <classifier>bin</classifier>
+</dependency>
+```
+```
+<dependency>
+    <groupId>com.github.haveno-dex.tor-binary</groupId>
+    <artifactId>tor-binary-linuxaarch64</artifactId>
     <version>${torbrowser.version}</version>
     <type>tar.xz</type>
     <classifier>bin</classifier>
