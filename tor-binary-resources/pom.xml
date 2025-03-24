@@ -45,6 +45,10 @@
                                         src="https://archive.torproject.org/tor-package-archive/torbrowser/${torbrowser.version}/tor-browser-linux-x86_64-${torbrowser.version}.tar.xz"
                                         dest="${project.source.directory}/tor-browser-linux-x86_64-${torbrowser.version}.tar.xz"
                                         skipexisting="true"/>
+                                    <get
+                                        src="https://nightlies.tbb.torproject.org/nightly-builds/tor-browser-builds/tbb-nightly.2025.03.17/nightly-linux-aarch64/tor-browser-linux-aarch64-tbb-nightly.2025.03.17.tar.xz"
+                                        dest="${project.source.directory}/tor-browser-linux-aarch64-${torbrowser.version}.tar.xz"
+                                        skipexisting="true"/>
                                 </parallel>
 
                                 <copy todir="${project.source.directory}">
@@ -57,6 +61,7 @@
                                         <checksum algorithm="SHA-256" file="${project.source.directory}/tor-browser-macos-${torbrowser.version}.dmg" />
                                         <checksum algorithm="SHA-256" file="${project.source.directory}/tor-browser-linux-i686-${torbrowser.version}.tar.xz" />
                                         <checksum algorithm="SHA-256" file="${project.source.directory}/tor-browser-linux-x86_64-${torbrowser.version}.tar.xz" />
+                                        <checksum algorithm="SHA-256" file="${project.source.directory}/tor-browser-linux-aarch64-${torbrowser.version}.tar.xz" />
                                     </and>
                                 </condition>
                                 <fail unless="checksumsMatch" />
