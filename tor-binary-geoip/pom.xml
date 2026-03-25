@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.haveno-dex.tor-binary</groupId>
         <artifactId>tor-binary</artifactId>
-        <version>0.4.8.14</version>
+        <version>0.4.9.5</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -46,29 +46,32 @@
                     <execution>
                         <id>unpack-geoip</id>
                         <phase>generate-resources</phase>
-                        <configuration>
-                            <target>
-                                <taskdef resource="org/apache/ant/compress/antlib.xml"
-                                         classpathref="maven.plugin.classpath"/>
+                            <configuration>
+                                <target>
+                                    <taskdef resource="org/apache/ant/compress/antlib.xml"
+                                            classpathref="maven.plugin.classpath" />
 
-                                <unxz
-                                    src="${project.remote-resource.directory}/tor-browser-linux-x86_64-${torbrowser.version}.tar.xz"
-                                    dest="${project.build.directory}/linuxx64.tar"
+                                    <!-- Decompress the expert bundle (.tar.gz) -->
+                                    <gunzip
+                                        src="${project.remote-resource.directory}/tor-expert-bundle-linux-x86_64-${torbrowser.version}.tar.gz"
+                                        dest="${project.build.directory}/linuxx64.tar" />
 
-                                />
-                                <untar src="${project.build.directory}/linuxx64.tar"
-                                       dest="${project.basedir}/src/main/resources">
-                                    <patternset>
-                                        <include name="tor-browser/Browser/TorBrowser/Data/Tor/geoip"/>
-                                        <include name="tor-browser/Browser/TorBrowser/Data/Tor/geoip6"/>
-                                    </patternset>
-                                    <mapper type="flatten"/>
-                                </untar>
-                                <delete dir="${project.remote-resource.directory}" />
+                                    <!-- Extract geoip files from the /data directory -->
+                                    <untar src="${project.build.directory}/linuxx64.tar"
+                                        dest="${project.basedir}/src/main/resources">
+                                        <patternset>
+                                            <!-- Matches geoip files in the /data folder -->
+                                            <include name="**/data/geoip" />
+                                            <include name="**/data/geoip6" />
+                                        </patternset>
+                                        <mapper type="flatten" />
+                                    </untar>
 
-                                <chmod dir="${project.basedir}/src/main/resources" perm="+x" includes="*"/>
-                            </target>
-                        </configuration>
+                                    <!-- Cleanup and permissions -->
+                                    <delete dir="${project.remote-resource.directory}" />
+                                    <chmod dir="${project.basedir}/src/main/resources" perm="+x" includes="*" />
+                                </target>
+                            </configuration>
                         <goals>
                             <goal>run</goal>
                         </goals>

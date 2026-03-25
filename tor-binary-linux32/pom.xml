@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.haveno-dex.tor-binary</groupId>
         <artifactId>tor-binary</artifactId>
-        <version>0.4.8.14</version>
+        <version>0.4.9.5</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -41,18 +41,30 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
-                                <exec executable="tar" dir="${project.build.directory}" failonerror="true">
-                                    <arg value="-xJvf"/>
-                                    <arg value="${project.remote-resource.directory}/tor-browser-linux-i686-${torbrowser.version}.tar.xz"/>
-                                    <arg value="tor-browser/Browser/TorBrowser/Tor/"/>
+                                <!-- Setup directories -->
+                                <delete dir="${project.build.directory}/linux-x86" failonerror="false" />
+                                <mkdir dir="${project.build.directory}/linux-x86" />
+
+                                <!-- Unpack the expert bundle (.tar.gz) -->
+                                <exec executable="tar" dir="${project.build.directory}/linux-x86" failonerror="true">
+                                    <arg value="-xzf" />
+                                    <arg value="${project.remote-resource.directory}/tor-expert-bundle-linux-i686-${torbrowser.version}.tar.gz" />
                                 </exec>
 
+                                <!-- Identify binary path (expert bundles put files in 'tor') -->
+                                <available file="${project.build.directory}/linux-x86/tor" type="dir" property="binpath" value="${project.build.directory}/linux-x86/tor/" />
+                                <property name="binpath" value="${project.build.directory}/linux-x86/" />
+
+                                <!-- Re-package into the project's internal format (.tar.xz) -->
                                 <delete dir="${project.basedir}/src/" failonerror="false" />
-                                <delete dir="${project.remote-resource.directory}" />
-                                <mkdir dir="${project.basedir}/src/main/resources/native/linux/x86/"/>
-                                <exec executable="tar" dir="${project.build.directory}/tor-browser/Browser/TorBrowser/Tor/" failonerror="true">
-                                    <arg line="-cJvf ${project.basedir}/src/main/resources/native/linux/x86/tor.tar.xz ."/>
+                                <mkdir dir="${project.basedir}/src/main/resources/native/linux/x86/" />
+                                
+                                <exec executable="tar" dir="${binpath}" failonerror="true">
+                                    <arg line="-cJvf ${project.basedir}/src/main/resources/native/linux/x86/tor.tar.xz ." />
                                 </exec>
+
+                                <!-- Cleanup -->
+                                <delete dir="${project.remote-resource.directory}" />
                             </target>
                         </configuration>
                         <goals>
