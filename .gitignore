@@ -29,5 +29,6 @@ target/
 /tor-binary-linux32/src
 /tor-binary-linux64/src
 /tor-binary-linuxaarch64/src
-/tor-binary-macos/src
+/tor-binary-macos64/src
+/tor-binary-macosaarch64/src
 /tor-binary-windows/src

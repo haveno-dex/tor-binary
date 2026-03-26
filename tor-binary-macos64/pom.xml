@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.github.haveno-dex.tor-binary</groupId>
+        <artifactId>tor-binary</artifactId>
+        <version>0.4.9.5</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>tor-binary-macos64</artifactId>
+    <packaging>jar</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-remote-resources-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <resourceBundles>
+                        <resourceBundle>com.github.haveno-dex.tor-binary:tor-binary-resources:${project.version}</resourceBundle>
+                    </resourceBundles>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>unpack-osx</id>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <target>
+                                <!-- Setup directories -->
+                                <delete dir="${project.build.directory}/osx-64" failonerror="false" />
+                                <mkdir dir="${project.build.directory}/osx-64" />
+                                <delete dir="${project.basedir}/src/" failonerror="false" />
+                                <mkdir dir="${project.basedir}/src/main/resources/native/osx/x64/" />
+
+                                <!-- Unpack the expert bundle (.tar.gz) -->
+                                <exec executable="tar" dir="${project.build.directory}/osx-64" failonerror="true">
+                                    <arg value="-xzf" />
+                                    <arg value="${project.remote-resource.directory}/tor-expert-bundle-macos-x86_64-${torbrowser.version}.tar.gz" />
+                                </exec>
+
+                                <!-- Identify binary path (expert bundles put files in 'tor') -->
+                                <available file="${project.build.directory}/osx-64/tor" type="dir" property="path" value="${project.build.directory}/osx-64/tor/" />
+                                <property name="path" value="${project.build.directory}/osx-64/" />
+
+                                <!-- Re-package into the project's internal format -->
+                                <mkdir dir="${project.basedir}/src/main/resources/native/osx/x64/"/>
+                                <exec executable="tar" dir="${path}" failonerror="true">
+                                    <arg line="-cJvf ${project.basedir}/src/main/resources/native/osx/x64/tor.tar.xz ." />
+                                </exec>
+
+                                <!-- Cleanup -->
+                                <delete dir="${project.remote-resource.directory}" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

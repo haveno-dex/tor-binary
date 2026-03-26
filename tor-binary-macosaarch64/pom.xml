@@ -10,7 +10,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>tor-binary-macos</artifactId>
+    <artifactId>tor-binary-macosaarch64</artifactId>
     <packaging>jar</packaging>
 
     <build>
@@ -42,25 +42,25 @@
                         <configuration>
                             <target>
                                 <!-- Setup directories -->
-                                <delete dir="${project.build.directory}/osx" failonerror="false" />
-                                <mkdir dir="${project.build.directory}/osx" />
+                                <delete dir="${project.build.directory}/osx-aarch64" failonerror="false" />
+                                <mkdir dir="${project.build.directory}/osx-aarch64" />
                                 <delete dir="${project.basedir}/src/" failonerror="false" />
-                                <mkdir dir="${project.basedir}/src/main/resources/native/osx/x64/" />
+                                <mkdir dir="${project.basedir}/src/main/resources/native/osx/aarch64/" />
 
                                 <!-- Unpack the expert bundle (.tar.gz) -->
-                                <exec executable="tar" dir="${project.build.directory}/osx" failonerror="true">
+                                <exec executable="tar" dir="${project.build.directory}/osx-aarch64" failonerror="true">
                                     <arg value="-xzf" />
-                                    <arg value="${project.remote-resource.directory}/tor-expert-bundle-macos-x86_64-${torbrowser.version}.tar.gz" />
+                                    <arg value="${project.remote-resource.directory}/tor-expert-bundle-macos-aarch64-${torbrowser.version}.tar.gz" />
                                 </exec>
 
                                 <!-- Identify binary path (expert bundles put files in 'tor') -->
-                                <available file="${project.build.directory}/osx/tor" type="dir" property="path" value="${project.build.directory}/osx/tor/" />
-                                <property name="path" value="${project.build.directory}/osx/" />
+                                <available file="${project.build.directory}/osx-aarch64/tor" type="dir" property="path" value="${project.build.directory}/osx-aarch64/tor/" />
+                                <property name="path" value="${project.build.directory}/osx-aarch64/" />
 
                                 <!-- Re-package into the project's internal format -->
-                                <mkdir dir="${project.basedir}/src/main/resources/native/osx/x64/"/>
+                                <mkdir dir="${project.basedir}/src/main/resources/native/osx/aarch64/"/>
                                 <exec executable="tar" dir="${path}" failonerror="true">
-                                    <arg line="-cJvf ${project.basedir}/src/main/resources/native/osx/x64/tor.tar.xz ." />
+                                    <arg line="-cJvf ${project.basedir}/src/main/resources/native/osx/aarch64/tor.tar.xz ." />
                                 </exec>
 
                                 <!-- Cleanup -->
