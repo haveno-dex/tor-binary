@@ -28,7 +28,8 @@ target/
 /tor-binary-geoip/src
 /tor-binary-linux32/src
 /tor-binary-linux64/src
-/tor-binary-linuxaarch64/src
-/tor-binary-macos64/src
-/tor-binary-macosaarch64/src
+/tor-binary-linux-aarch64/src
+/tor-binary-macos/src
+/tor-binary-macos-aarch64/src
 /tor-binary-windows/src
+/tor-binary-windows64/src
