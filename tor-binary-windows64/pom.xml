@@ -6,11 +6,11 @@
     <parent>
         <groupId>com.github.haveno-dex.tor-binary</groupId>
         <artifactId>tor-binary</artifactId>
-        <version>0.4.9.5</version>
+        <version>0.4.9.8</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>tor-binary-macosaarch64</artifactId>
+    <artifactId>tor-binary-windows64</artifactId>
     <packaging>jar</packaging>
 
     <build>
@@ -37,33 +37,36 @@
                 <version>1.8</version>
                 <executions>
                     <execution>
-                        <id>unpack-osx</id>
+                        <id>unpack-windows-x86_64</id>
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
-                                <!-- Setup directories -->
-                                <delete dir="${project.build.directory}/osx-aarch64" failonerror="false" />
-                                <mkdir dir="${project.build.directory}/osx-aarch64" />
+                                <property name="bundle.name" value="tor-expert-bundle-windows-x86_64-${torbrowser.version}.tar.gz"/>
+                                <property name="extract.dir" value="${project.build.directory}/tor-expert-bundle-windows-x86_64"/>
+
+                                <delete dir="${extract.dir}" failonerror="false" />
+                                <mkdir dir="${extract.dir}"/>
+
+                                <exec executable="tar" dir="${extract.dir}" failonerror="true">
+                                    <arg value="-xzf"/>
+                                    <arg value="${project.remote-resource.directory}/${bundle.name}"/>
+                                </exec>
+
+                                <fail message="Expected ${extract.dir}/tor in ${bundle.name}">
+                                    <condition>
+                                        <not>
+                                            <available file="${extract.dir}/tor" type="dir"/>
+                                        </not>
+                                    </condition>
+                                </fail>
+
                                 <delete dir="${project.basedir}/src/" failonerror="false" />
-                                <mkdir dir="${project.basedir}/src/main/resources/native/osx/aarch64/" />
+                                <mkdir dir="${project.basedir}/src/main/resources/native/windows/x64/"/>
 
-                                <!-- Unpack the expert bundle (.tar.gz) -->
-                                <exec executable="tar" dir="${project.build.directory}/osx-aarch64" failonerror="true">
-                                    <arg value="-xzf" />
-                                    <arg value="${project.remote-resource.directory}/tor-expert-bundle-macos-aarch64-${torbrowser.version}.tar.gz" />
+                                <exec executable="tar" dir="${extract.dir}/tor" failonerror="true">
+                                    <arg line="-cJvf ${project.basedir}/src/main/resources/native/windows/x64/tor.tar.xz ."/>
                                 </exec>
 
-                                <!-- Identify binary path (expert bundles put files in 'tor') -->
-                                <available file="${project.build.directory}/osx-aarch64/tor" type="dir" property="path" value="${project.build.directory}/osx-aarch64/tor/" />
-                                <property name="path" value="${project.build.directory}/osx-aarch64/" />
-
-                                <!-- Re-package into the project's internal format -->
-                                <mkdir dir="${project.basedir}/src/main/resources/native/osx/aarch64/"/>
-                                <exec executable="tar" dir="${path}" failonerror="true">
-                                    <arg line="-cJvf ${project.basedir}/src/main/resources/native/osx/aarch64/tor.tar.xz ." />
-                                </exec>
-
-                                <!-- Cleanup -->
                                 <delete dir="${project.remote-resource.directory}" />
                             </target>
                         </configuration>
