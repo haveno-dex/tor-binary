@@ -41,7 +41,7 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
-                                <property name="bundle.name" value="tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz"/>
+                                <property name="bundle.name" value="tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz"/>
                                 <property name="extract.dir" value="${project.build.directory}/tor-expert-bundle-linux-aarch64"/>
 
                                 <delete dir="${extract.dir}" failonerror="false" />

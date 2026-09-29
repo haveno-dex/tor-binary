@@ -19,6 +19,9 @@
         -->
         <torbrowser.version>15.0.24</torbrowser.version>
         <torbrowser.download.base.url>https://archive.torproject.org/tor-package-archive/torbrowser/${torbrowser.version}</torbrowser.download.base.url>
+        <!-- linux aarch64 expert bundles are only published in alpha releases before Tor Browser 16.0 -->
+        <torbrowser.linux.aarch64.version>16.0a12</torbrowser.linux.aarch64.version>
+        <torbrowser.linux.aarch64.download.base.url>https://archive.torproject.org/tor-package-archive/torbrowser/${torbrowser.linux.aarch64.version}</torbrowser.linux.aarch64.download.base.url>
         <pgp.signature.keyserver>keys.openpgp.org</pgp.signature.keyserver>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -92,13 +95,14 @@
 
                                         <macrodef name="fetch-tor-bundle">
                                             <attribute name="bundle"/>
+                                            <attribute name="baseurl" default="${torbrowser.download.base.url}"/>
                                             <sequential>
                                                 <get
-                                                    src="${torbrowser.download.base.url}/@{bundle}"
+                                                    src="@{baseurl}/@{bundle}"
                                                     dest="${pgp.signature.check.directory}/@{bundle}"
                                                     skipexisting="true"/>
                                                 <get
-                                                    src="${torbrowser.download.base.url}/@{bundle}.asc"
+                                                    src="@{baseurl}/@{bundle}.asc"
                                                     dest="${pgp.signature.check.directory}/@{bundle}.asc"
                                                     skipexisting="true"/>
                                             </sequential>
@@ -133,7 +137,7 @@
                                             <fetch-tor-bundle bundle="tor-expert-bundle-macos-aarch64-${torbrowser.version}.tar.gz"/>
                                             <fetch-tor-bundle bundle="tor-expert-bundle-linux-i686-${torbrowser.version}.tar.gz"/>
                                             <fetch-tor-bundle bundle="tor-expert-bundle-linux-x86_64-${torbrowser.version}.tar.gz"/>
-                                            <fetch-tor-bundle bundle="tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz"/>
+                                            <fetch-tor-bundle bundle="tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz" baseurl="${torbrowser.linux.aarch64.download.base.url}"/>
                                         </parallel>
 
                                         <verify-tor-bundle bundle="tor-expert-bundle-windows-i686-${torbrowser.version}.tar.gz"/>
@@ -142,7 +146,7 @@
                                         <verify-tor-bundle bundle="tor-expert-bundle-macos-aarch64-${torbrowser.version}.tar.gz"/>
                                         <verify-tor-bundle bundle="tor-expert-bundle-linux-i686-${torbrowser.version}.tar.gz"/>
                                         <verify-tor-bundle bundle="tor-expert-bundle-linux-x86_64-${torbrowser.version}.tar.gz"/>
-                                        <verify-tor-bundle bundle="tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz"/>
+                                        <verify-tor-bundle bundle="tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz"/>
 
                                         <delete dir="${pgp.signature.check.directory}" failonerror="false"/>
                                     </target>

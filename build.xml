@@ -4,6 +4,8 @@
     <property name="project.source.directory" value="tmp"/>
     <property name="torbrowser.version" value="15.0.24"/>
     <property name="torbrowser.download.base.url" value="https://archive.torproject.org/tor-package-archive/torbrowser/${torbrowser.version}"/>
+    <property name="torbrowser.linux.aarch64.version" value="16.0a12"/>
+    <property name="torbrowser.linux.aarch64.download.base.url" value="https://archive.torproject.org/tor-package-archive/torbrowser/${torbrowser.linux.aarch64.version}"/>
     <target name="checkSignatures">
 
         <delete dir="${project.source.directory}" failonerror="false"/>
@@ -58,12 +60,12 @@
                 dest="${project.source.directory}/tor-expert-bundle-linux-x86_64-${torbrowser.version}.tar.gz.asc"
                 skipexisting="true"/>
             <get
-                src="${torbrowser.download.base.url}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz"
-                dest="${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz"
+                src="${torbrowser.linux.aarch64.download.base.url}/tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz"
+                dest="${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz"
                 skipexisting="true"/>
             <get
-                src="${torbrowser.download.base.url}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz.asc"
-                dest="${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz.asc"
+                src="${torbrowser.linux.aarch64.download.base.url}/tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz.asc"
+                dest="${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz.asc"
                 skipexisting="true"/>    
         </parallel>
         <parallel>
@@ -93,7 +95,7 @@
             </exec>
             <exec executable="gpg" failonerror="true">
                 <arg
-                    line="--auto-key-locate keyserver --keyserver keys.openpgp.org --keyserver-options auto-key-retrieve --verify ${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz.asc ${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz"></arg>
+                    line="--auto-key-locate keyserver --keyserver keys.openpgp.org --keyserver-options auto-key-retrieve --verify ${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz.asc ${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz"></arg>
             </exec>
         </parallel>
 

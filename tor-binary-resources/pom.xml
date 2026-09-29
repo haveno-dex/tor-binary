@@ -55,8 +55,8 @@
                                         dest="${project.source.directory}/tor-expert-bundle-linux-x86_64-${torbrowser.version}.tar.gz"
                                         skipexisting="true"/>
                                     <get
-                                        src="https://nightlies.tbb.torproject.org/nightly-builds/tor-browser-builds/tbb-nightly.2026.09.09/nightly-linux-aarch64/tor-expert-bundle-linux-aarch64-tbb-nightly.2026.09.09.tar.gz"
-                                        dest="${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz"
+                                        src="${torbrowser.linux.aarch64.download.base.url}/tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz"
+                                        dest="${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz"
                                         skipexisting="true"/>
                                 </parallel>
 
@@ -72,7 +72,7 @@
                                         <checksum algorithm="SHA-256" file="${project.source.directory}/tor-expert-bundle-macos-aarch64-${torbrowser.version}.tar.gz" />
                                         <checksum algorithm="SHA-256" file="${project.source.directory}/tor-expert-bundle-linux-i686-${torbrowser.version}.tar.gz" />
                                         <checksum algorithm="SHA-256" file="${project.source.directory}/tor-expert-bundle-linux-x86_64-${torbrowser.version}.tar.gz" />
-                                        <checksum algorithm="SHA-256" file="${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz" />
+                                        <checksum algorithm="SHA-256" file="${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.linux.aarch64.version}.tar.gz" />
                                     </and>
                                 </condition>
                                 <fail unless="checksumsMatch" />

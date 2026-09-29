@@ -32,6 +32,8 @@ Package native Tor files from [Tor Browser project](https://www.torproject.org/)
 
 Tor Browser versions can be found here: https://archive.torproject.org/tor-package-archive/torbrowser/[torbrowser.version]
 
+Stable Tor Browser releases before 16.0 do not include a Linux aarch64 expert bundle, so it is fetched from the latest signed alpha release set by `torbrowser.linux.aarch64.version` in the [build file](build.xml) and the [Maven file](pom.xml). Its tor version may lag the other platforms until an alpha with the same tor version is published.
+
 # Pre-requisites
 
 - GPG, when checking PGP signatures with Maven or refreshing checksums with `build.xml`
