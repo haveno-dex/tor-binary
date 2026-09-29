@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.haveno-dex.tor-binary</groupId>
         <artifactId>tor-binary</artifactId>
-        <version>0.4.9.12</version>
+        <version>0.4.9.13</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -55,7 +55,7 @@
                                         dest="${project.source.directory}/tor-expert-bundle-linux-x86_64-${torbrowser.version}.tar.gz"
                                         skipexisting="true"/>
                                     <get
-                                        src="https://nightlies.tbb.torproject.org/nightly-builds/tor-browser-builds/tbb-nightly.2026.09.09/nightly-linux-aarch64/tor-expert-bundle-linux-aarch64-tbb-nightly.2026.09.09.tar.gz"
+                                        src="https://nightlies.tbb.torproject.org/nightly-builds/tor-browser-builds/tbb-nightly.2026.09.29/nightly-linux-aarch64/tor-expert-bundle-linux-aarch64-tbb-nightly.2026.09.29.tar.gz"
                                         dest="${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz"
                                         skipexisting="true"/>
                                 </parallel>
