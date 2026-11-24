@@ -55,7 +55,7 @@
                                         dest="${project.source.directory}/tor-expert-bundle-linux-x86_64-${torbrowser.version}.tar.gz"
                                         skipexisting="true"/>
                                     <get
-                                        src="https://nightlies.tbb.torproject.org/nightly-builds/tor-browser-builds/tbb-nightly.2026.11.24/nightly-linux-aarch64/tor-expert-bundle-linux-aarch64-tbb-nightly.2026.11.24.tar.gz"
+                                        src="${torbrowser.download.base.url}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz"
                                         dest="${project.source.directory}/tor-expert-bundle-linux-aarch64-${torbrowser.version}.tar.gz"
                                         skipexisting="true"/>
                                 </parallel>
